@@ -1,5 +1,5 @@
 /*
-configmanager/service.proto
+Config Manager Service
 
 Testing ConfigManagerAPIService
 

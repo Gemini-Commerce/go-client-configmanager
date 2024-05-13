@@ -1,11 +1,11 @@
 # GeminiCommerce\Configmanager\ConfigManagerAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://config-manager.api.gogemini.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ConfigManagerBulkSetConfigs**](ConfigManagerAPI.md#ConfigManagerBulkSetConfigs) | **Post** /configmanager.ConfigManager/BulkSetConfigs | 
-[**ConfigManagerGetConfig**](ConfigManagerAPI.md#ConfigManagerGetConfig) | **Post** /configmanager.ConfigManager/GetConfig | 
+[**ConfigManagerBulkSetConfigs**](ConfigManagerAPI.md#ConfigManagerBulkSetConfigs) | **Post** /configmanager.ConfigManager/BulkSetConfigs | BulkSetConfigs
+[**ConfigManagerGetConfig**](ConfigManagerAPI.md#ConfigManagerGetConfig) | **Post** /configmanager.ConfigManager/GetConfig | GetConfig
 [**ConfigManagerGetTenantIdByCode**](ConfigManagerAPI.md#ConfigManagerGetTenantIdByCode) | **Post** /configmanager.ConfigManager/GetTenantIdByCode | 
 
 
@@ -13,6 +13,8 @@ Method | HTTP request | Description
 ## ConfigManagerBulkSetConfigs
 
 > map[string]interface{} ConfigManagerBulkSetConfigs(ctx).Body(body).Execute()
+
+BulkSetConfigs
 
 
 
@@ -62,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[standardAuthorization](../README.md#standardAuthorization)
 
 ### HTTP request headers
 
@@ -77,6 +79,8 @@ No authorization required
 ## ConfigManagerGetConfig
 
 > ConfigmanagerConfigResponse ConfigManagerGetConfig(ctx).Body(body).Execute()
+
+GetConfig
 
 
 
@@ -126,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[standardAuthorization](../README.md#standardAuthorization)
 
 ### HTTP request headers
 
@@ -190,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Authorization](../README.md#Authorization)
 
 ### HTTP request headers
 
