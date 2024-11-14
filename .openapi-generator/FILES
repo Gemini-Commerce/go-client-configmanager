@@ -26,5 +26,4 @@ model_configmanager_get_tenant_id_by_code_response.go
 model_protobuf_any.go
 model_rpc_status.go
 response.go
-test/api_config_manager_test.go
 utils.go

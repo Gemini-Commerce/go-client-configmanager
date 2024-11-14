@@ -13,7 +13,6 @@ package configmanager
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ConfigmanagerGetTenantIdByCodeResponse{}
 // ConfigmanagerGetTenantIdByCodeResponse struct for ConfigmanagerGetTenantIdByCodeResponse
 type ConfigmanagerGetTenantIdByCodeResponse struct {
 	TenantId string `json:"tenantId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConfigmanagerGetTenantIdByCodeResponse ConfigmanagerGetTenantIdByCodeResponse
@@ -80,6 +80,11 @@ func (o ConfigmanagerGetTenantIdByCodeResponse) MarshalJSON() ([]byte, error) {
 func (o ConfigmanagerGetTenantIdByCodeResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tenantId"] = o.TenantId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,9 +112,7 @@ func (o *ConfigmanagerGetTenantIdByCodeResponse) UnmarshalJSON(data []byte) (err
 
 	varConfigmanagerGetTenantIdByCodeResponse := _ConfigmanagerGetTenantIdByCodeResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConfigmanagerGetTenantIdByCodeResponse)
+	err = json.Unmarshal(data, &varConfigmanagerGetTenantIdByCodeResponse)
 
 	if err != nil {
 		return err
@@ -117,9 +120,34 @@ func (o *ConfigmanagerGetTenantIdByCodeResponse) UnmarshalJSON(data []byte) (err
 
 	*o = ConfigmanagerGetTenantIdByCodeResponse(varConfigmanagerGetTenantIdByCodeResponse)
 
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "tenantId")
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return err
 }
 
+// GetValue returns the value of well-known types
+func (o *ConfigmanagerGetTenantIdByCodeResponse) GetValue() interface{} {
+	if o == nil || IsNil(o.Type) || IsNil(o.AdditionalProperties) {
+		return nil
+	}
+	return o.AdditionalProperties["value"]
+}
+// SetValue populate the value of well-known types
+func (o *ConfigmanagerGetTenantIdByCodeResponse) SetValue(value interface{}) {
+	if o == nil || IsNil(o.Type) || IsNil(value) {
+		return
+	}
+    if IsNil(o.AdditionalProperties) {
+        o.AdditionalProperties = map[string]interface{}{}
+    }
+	o.AdditionalProperties["value"] = value
+	return
+}
 type NullableConfigmanagerGetTenantIdByCodeResponse struct {
 	value *ConfigmanagerGetTenantIdByCodeResponse
 	isSet bool

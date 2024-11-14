@@ -24,7 +24,10 @@ type ConfigmanagerConfigResponse struct {
 	Value *string `json:"value,omitempty"`
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ConfigmanagerConfigResponse ConfigmanagerConfigResponse
 
 // NewConfigmanagerConfigResponse instantiates a new ConfigmanagerConfigResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -61,8 +64,8 @@ func (o *ConfigmanagerConfigResponse) GetValueOk() (*string, bool) {
 	return o.Value, true
 }
 
-// HasValue returns a boolean if a field has been set.
-func (o *ConfigmanagerConfigResponse) HasValue() bool {
+// &#39;Has&#39;Value returns a boolean if a field has been set.
+func (o *ConfigmanagerConfigResponse) &#39;Has&#39;Value() bool {
 	if o != nil && !IsNil(o.Value) {
 		return true
 	}
@@ -93,8 +96,8 @@ func (o *ConfigmanagerConfigResponse) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *ConfigmanagerConfigResponse) HasCreatedAt() bool {
+// &#39;Has&#39;CreatedAt returns a boolean if a field has been set.
+func (o *ConfigmanagerConfigResponse) &#39;Has&#39;CreatedAt() bool {
 	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
@@ -125,8 +128,8 @@ func (o *ConfigmanagerConfigResponse) GetUpdatedAtOk() (*time.Time, bool) {
 	return o.UpdatedAt, true
 }
 
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *ConfigmanagerConfigResponse) HasUpdatedAt() bool {
+// &#39;Has&#39;UpdatedAt returns a boolean if a field has been set.
+func (o *ConfigmanagerConfigResponse) &#39;Has&#39;UpdatedAt() bool {
 	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
@@ -158,9 +161,55 @@ func (o ConfigmanagerConfigResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
+func (o *ConfigmanagerConfigResponse) UnmarshalJSON(data []byte) (err error) {
+	varConfigmanagerConfigResponse := _ConfigmanagerConfigResponse{}
+
+	err = json.Unmarshal(data, &varConfigmanagerConfigResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ConfigmanagerConfigResponse(varConfigmanagerConfigResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
+}
+
+// GetValue returns the value of well-known types
+func (o *ConfigmanagerConfigResponse) GetValue() interface{} {
+	if o == nil || IsNil(o.Type) || IsNil(o.AdditionalProperties) {
+		return nil
+	}
+	return o.AdditionalProperties["value"]
+}
+// SetValue populate the value of well-known types
+func (o *ConfigmanagerConfigResponse) SetValue(value interface{}) {
+	if o == nil || IsNil(o.Type) || IsNil(value) {
+		return
+	}
+    if IsNil(o.AdditionalProperties) {
+        o.AdditionalProperties = map[string]interface{}{}
+    }
+	o.AdditionalProperties["value"] = value
+	return
+}
 type NullableConfigmanagerConfigResponse struct {
 	value *ConfigmanagerConfigResponse
 	isSet bool

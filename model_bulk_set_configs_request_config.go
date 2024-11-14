@@ -13,7 +13,6 @@ package configmanager
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type BulkSetConfigsRequestConfig struct {
 	Key string `json:"key"`
 	Value string `json:"value"`
 	BusinessDomain *string `json:"businessDomain,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BulkSetConfigsRequestConfig BulkSetConfigsRequestConfig
@@ -114,8 +114,8 @@ func (o *BulkSetConfigsRequestConfig) GetBusinessDomainOk() (*string, bool) {
 	return o.BusinessDomain, true
 }
 
-// HasBusinessDomain returns a boolean if a field has been set.
-func (o *BulkSetConfigsRequestConfig) HasBusinessDomain() bool {
+// &#39;Has&#39;BusinessDomain returns a boolean if a field has been set.
+func (o *BulkSetConfigsRequestConfig) &#39;Has&#39;BusinessDomain() bool {
 	if o != nil && !IsNil(o.BusinessDomain) {
 		return true
 	}
@@ -143,6 +143,11 @@ func (o BulkSetConfigsRequestConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BusinessDomain) {
 		toSerialize["businessDomain"] = o.BusinessDomain
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,9 +176,7 @@ func (o *BulkSetConfigsRequestConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varBulkSetConfigsRequestConfig := _BulkSetConfigsRequestConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBulkSetConfigsRequestConfig)
+	err = json.Unmarshal(data, &varBulkSetConfigsRequestConfig)
 
 	if err != nil {
 		return err
@@ -181,9 +184,36 @@ func (o *BulkSetConfigsRequestConfig) UnmarshalJSON(data []byte) (err error) {
 
 	*o = BulkSetConfigsRequestConfig(varBulkSetConfigsRequestConfig)
 
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "businessDomain")
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return err
 }
 
+// GetValue returns the value of well-known types
+func (o *BulkSetConfigsRequestConfig) GetValue() interface{} {
+	if o == nil || IsNil(o.Type) || IsNil(o.AdditionalProperties) {
+		return nil
+	}
+	return o.AdditionalProperties["value"]
+}
+// SetValue populate the value of well-known types
+func (o *BulkSetConfigsRequestConfig) SetValue(value interface{}) {
+	if o == nil || IsNil(o.Type) || IsNil(value) {
+		return
+	}
+    if IsNil(o.AdditionalProperties) {
+        o.AdditionalProperties = map[string]interface{}{}
+    }
+	o.AdditionalProperties["value"] = value
+	return
+}
 type NullableBulkSetConfigsRequestConfig struct {
 	value *BulkSetConfigsRequestConfig
 	isSet bool

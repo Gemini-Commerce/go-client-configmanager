@@ -13,7 +13,6 @@ package configmanager
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &ConfigmanagerBulkSetConfigsRequest{}
 type ConfigmanagerBulkSetConfigsRequest struct {
 	TenantId string `json:"tenantId"`
 	Configs []BulkSetConfigsRequestConfig `json:"configs"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConfigmanagerBulkSetConfigsRequest ConfigmanagerBulkSetConfigsRequest
@@ -107,6 +107,11 @@ func (o ConfigmanagerBulkSetConfigsRequest) ToMap() (map[string]interface{}, err
 	toSerialize := map[string]interface{}{}
 	toSerialize["tenantId"] = o.TenantId
 	toSerialize["configs"] = o.Configs
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,9 +140,7 @@ func (o *ConfigmanagerBulkSetConfigsRequest) UnmarshalJSON(data []byte) (err err
 
 	varConfigmanagerBulkSetConfigsRequest := _ConfigmanagerBulkSetConfigsRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConfigmanagerBulkSetConfigsRequest)
+	err = json.Unmarshal(data, &varConfigmanagerBulkSetConfigsRequest)
 
 	if err != nil {
 		return err
@@ -145,9 +148,35 @@ func (o *ConfigmanagerBulkSetConfigsRequest) UnmarshalJSON(data []byte) (err err
 
 	*o = ConfigmanagerBulkSetConfigsRequest(varConfigmanagerBulkSetConfigsRequest)
 
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "tenantId")
+		delete(additionalProperties, "configs")
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return err
 }
 
+// GetValue returns the value of well-known types
+func (o *ConfigmanagerBulkSetConfigsRequest) GetValue() interface{} {
+	if o == nil || IsNil(o.Type) || IsNil(o.AdditionalProperties) {
+		return nil
+	}
+	return o.AdditionalProperties["value"]
+}
+// SetValue populate the value of well-known types
+func (o *ConfigmanagerBulkSetConfigsRequest) SetValue(value interface{}) {
+	if o == nil || IsNil(o.Type) || IsNil(value) {
+		return
+	}
+    if IsNil(o.AdditionalProperties) {
+        o.AdditionalProperties = map[string]interface{}{}
+    }
+	o.AdditionalProperties["value"] = value
+	return
+}
 type NullableConfigmanagerBulkSetConfigsRequest struct {
 	value *ConfigmanagerBulkSetConfigsRequest
 	isSet bool

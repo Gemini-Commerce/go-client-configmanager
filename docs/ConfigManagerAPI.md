@@ -1,4 +1,4 @@
-# GeminiCommerce\Configmanager\ConfigManagerAPI
+# \ConfigManagerAPI
 
 All URIs are relative to *https://config-manager.api.gogemini.io*
 

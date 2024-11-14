@@ -20,64 +20,21 @@ import (
 )
 
 
-type ConfigManagerAPI interface {
-
-	/*
-	ConfigManagerBulkSetConfigs BulkSetConfigs
-
-	Bulk set configs
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ConfigManagerAPIConfigManagerBulkSetConfigsRequest
-	*/
-	ConfigManagerBulkSetConfigs(ctx context.Context) ConfigManagerAPIConfigManagerBulkSetConfigsRequest
-
-	// ConfigManagerBulkSetConfigsExecute executes the request
-	//  @return map[string]interface{}
-	ConfigManagerBulkSetConfigsExecute(r ConfigManagerAPIConfigManagerBulkSetConfigsRequest) (map[string]interface{}, *http.Response, error)
-
-	/*
-	ConfigManagerGetConfig GetConfig
-
-	Get a config
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ConfigManagerAPIConfigManagerGetConfigRequest
-	*/
-	ConfigManagerGetConfig(ctx context.Context) ConfigManagerAPIConfigManagerGetConfigRequest
-
-	// ConfigManagerGetConfigExecute executes the request
-	//  @return ConfigmanagerConfigResponse
-	ConfigManagerGetConfigExecute(r ConfigManagerAPIConfigManagerGetConfigRequest) (*ConfigmanagerConfigResponse, *http.Response, error)
-
-	/*
-	ConfigManagerGetTenantIdByCode Method for ConfigManagerGetTenantIdByCode
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest
-	*/
-	ConfigManagerGetTenantIdByCode(ctx context.Context) ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest
-
-	// ConfigManagerGetTenantIdByCodeExecute executes the request
-	//  @return ConfigmanagerGetTenantIdByCodeResponse
-	ConfigManagerGetTenantIdByCodeExecute(r ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest) (*ConfigmanagerGetTenantIdByCodeResponse, *http.Response, error)
-}
-
 // ConfigManagerAPIService ConfigManagerAPI service
 type ConfigManagerAPIService service
 
-type ConfigManagerAPIConfigManagerBulkSetConfigsRequest struct {
+type ApiConfigManagerBulkSetConfigsRequest struct {
 	ctx context.Context
-	ApiService ConfigManagerAPI
+	ApiService *ConfigManagerAPIService
 	body *ConfigmanagerBulkSetConfigsRequest
 }
 
-func (r ConfigManagerAPIConfigManagerBulkSetConfigsRequest) Body(body ConfigmanagerBulkSetConfigsRequest) ConfigManagerAPIConfigManagerBulkSetConfigsRequest {
+func (r ApiConfigManagerBulkSetConfigsRequest) Body(body ConfigmanagerBulkSetConfigsRequest) ApiConfigManagerBulkSetConfigsRequest {
 	r.body = &body
 	return r
 }
 
-func (r ConfigManagerAPIConfigManagerBulkSetConfigsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiConfigManagerBulkSetConfigsRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.ConfigManagerBulkSetConfigsExecute(r)
 }
 
@@ -87,10 +44,10 @@ ConfigManagerBulkSetConfigs BulkSetConfigs
 Bulk set configs
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ConfigManagerAPIConfigManagerBulkSetConfigsRequest
+ @return ApiConfigManagerBulkSetConfigsRequest
 */
-func (a *ConfigManagerAPIService) ConfigManagerBulkSetConfigs(ctx context.Context) ConfigManagerAPIConfigManagerBulkSetConfigsRequest {
-	return ConfigManagerAPIConfigManagerBulkSetConfigsRequest{
+func (a *ConfigManagerAPIService) ConfigManagerBulkSetConfigs(ctx context.Context) ApiConfigManagerBulkSetConfigsRequest {
+	return ApiConfigManagerBulkSetConfigsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -98,7 +55,7 @@ func (a *ConfigManagerAPIService) ConfigManagerBulkSetConfigs(ctx context.Contex
 
 // Execute executes the request
 //  @return map[string]interface{}
-func (a *ConfigManagerAPIService) ConfigManagerBulkSetConfigsExecute(r ConfigManagerAPIConfigManagerBulkSetConfigsRequest) (map[string]interface{}, *http.Response, error) {
+func (a *ConfigManagerAPIService) ConfigManagerBulkSetConfigsExecute(r ApiConfigManagerBulkSetConfigsRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -184,18 +141,18 @@ func (a *ConfigManagerAPIService) ConfigManagerBulkSetConfigsExecute(r ConfigMan
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ConfigManagerAPIConfigManagerGetConfigRequest struct {
+type ApiConfigManagerGetConfigRequest struct {
 	ctx context.Context
-	ApiService ConfigManagerAPI
+	ApiService *ConfigManagerAPIService
 	body *ConfigmanagerGetConfigRequest
 }
 
-func (r ConfigManagerAPIConfigManagerGetConfigRequest) Body(body ConfigmanagerGetConfigRequest) ConfigManagerAPIConfigManagerGetConfigRequest {
+func (r ApiConfigManagerGetConfigRequest) Body(body ConfigmanagerGetConfigRequest) ApiConfigManagerGetConfigRequest {
 	r.body = &body
 	return r
 }
 
-func (r ConfigManagerAPIConfigManagerGetConfigRequest) Execute() (*ConfigmanagerConfigResponse, *http.Response, error) {
+func (r ApiConfigManagerGetConfigRequest) Execute() (*ConfigmanagerConfigResponse, *http.Response, error) {
 	return r.ApiService.ConfigManagerGetConfigExecute(r)
 }
 
@@ -205,10 +162,10 @@ ConfigManagerGetConfig GetConfig
 Get a config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ConfigManagerAPIConfigManagerGetConfigRequest
+ @return ApiConfigManagerGetConfigRequest
 */
-func (a *ConfigManagerAPIService) ConfigManagerGetConfig(ctx context.Context) ConfigManagerAPIConfigManagerGetConfigRequest {
-	return ConfigManagerAPIConfigManagerGetConfigRequest{
+func (a *ConfigManagerAPIService) ConfigManagerGetConfig(ctx context.Context) ApiConfigManagerGetConfigRequest {
+	return ApiConfigManagerGetConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -216,7 +173,7 @@ func (a *ConfigManagerAPIService) ConfigManagerGetConfig(ctx context.Context) Co
 
 // Execute executes the request
 //  @return ConfigmanagerConfigResponse
-func (a *ConfigManagerAPIService) ConfigManagerGetConfigExecute(r ConfigManagerAPIConfigManagerGetConfigRequest) (*ConfigmanagerConfigResponse, *http.Response, error) {
+func (a *ConfigManagerAPIService) ConfigManagerGetConfigExecute(r ApiConfigManagerGetConfigRequest) (*ConfigmanagerConfigResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -302,18 +259,18 @@ func (a *ConfigManagerAPIService) ConfigManagerGetConfigExecute(r ConfigManagerA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest struct {
+type ApiConfigManagerGetTenantIdByCodeRequest struct {
 	ctx context.Context
-	ApiService ConfigManagerAPI
+	ApiService *ConfigManagerAPIService
 	body *ConfigmanagerGetTenantIdByCodeRequest
 }
 
-func (r ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest) Body(body ConfigmanagerGetTenantIdByCodeRequest) ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest {
+func (r ApiConfigManagerGetTenantIdByCodeRequest) Body(body ConfigmanagerGetTenantIdByCodeRequest) ApiConfigManagerGetTenantIdByCodeRequest {
 	r.body = &body
 	return r
 }
 
-func (r ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest) Execute() (*ConfigmanagerGetTenantIdByCodeResponse, *http.Response, error) {
+func (r ApiConfigManagerGetTenantIdByCodeRequest) Execute() (*ConfigmanagerGetTenantIdByCodeResponse, *http.Response, error) {
 	return r.ApiService.ConfigManagerGetTenantIdByCodeExecute(r)
 }
 
@@ -321,10 +278,10 @@ func (r ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest) Execute() (*Confi
 ConfigManagerGetTenantIdByCode Method for ConfigManagerGetTenantIdByCode
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest
+ @return ApiConfigManagerGetTenantIdByCodeRequest
 */
-func (a *ConfigManagerAPIService) ConfigManagerGetTenantIdByCode(ctx context.Context) ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest {
-	return ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest{
+func (a *ConfigManagerAPIService) ConfigManagerGetTenantIdByCode(ctx context.Context) ApiConfigManagerGetTenantIdByCodeRequest {
+	return ApiConfigManagerGetTenantIdByCodeRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -332,7 +289,7 @@ func (a *ConfigManagerAPIService) ConfigManagerGetTenantIdByCode(ctx context.Con
 
 // Execute executes the request
 //  @return ConfigmanagerGetTenantIdByCodeResponse
-func (a *ConfigManagerAPIService) ConfigManagerGetTenantIdByCodeExecute(r ConfigManagerAPIConfigManagerGetTenantIdByCodeRequest) (*ConfigmanagerGetTenantIdByCodeResponse, *http.Response, error) {
+func (a *ConfigManagerAPIService) ConfigManagerGetTenantIdByCodeExecute(r ApiConfigManagerGetTenantIdByCodeRequest) (*ConfigmanagerGetTenantIdByCodeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
