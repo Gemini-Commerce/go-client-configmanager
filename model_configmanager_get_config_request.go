@@ -114,8 +114,8 @@ func (o *ConfigmanagerGetConfigRequest) GetBusinessDomainOk() (*string, bool) {
 	return o.BusinessDomain, true
 }
 
-// &#39;Has&#39;BusinessDomain returns a boolean if a field has been set.
-func (o *ConfigmanagerGetConfigRequest) &#39;Has&#39;BusinessDomain() bool {
+// HasBusinessDomain returns a boolean if a field has been set.
+func (o *ConfigmanagerGetConfigRequest) HasBusinessDomain() bool {
 	if o != nil && !IsNil(o.BusinessDomain) {
 		return true
 	}

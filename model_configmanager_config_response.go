@@ -64,8 +64,8 @@ func (o *ConfigmanagerConfigResponse) GetValueOk() (*string, bool) {
 	return o.Value, true
 }
 
-// &#39;Has&#39;Value returns a boolean if a field has been set.
-func (o *ConfigmanagerConfigResponse) &#39;Has&#39;Value() bool {
+// HasValue returns a boolean if a field has been set.
+func (o *ConfigmanagerConfigResponse) HasValue() bool {
 	if o != nil && !IsNil(o.Value) {
 		return true
 	}
@@ -96,8 +96,8 @@ func (o *ConfigmanagerConfigResponse) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt, true
 }
 
-// &#39;Has&#39;CreatedAt returns a boolean if a field has been set.
-func (o *ConfigmanagerConfigResponse) &#39;Has&#39;CreatedAt() bool {
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *ConfigmanagerConfigResponse) HasCreatedAt() bool {
 	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
@@ -128,8 +128,8 @@ func (o *ConfigmanagerConfigResponse) GetUpdatedAtOk() (*time.Time, bool) {
 	return o.UpdatedAt, true
 }
 
-// &#39;Has&#39;UpdatedAt returns a boolean if a field has been set.
-func (o *ConfigmanagerConfigResponse) &#39;Has&#39;UpdatedAt() bool {
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *ConfigmanagerConfigResponse) HasUpdatedAt() bool {
 	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
